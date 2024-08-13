@@ -129,9 +129,7 @@ class _BottomExpandableAppBarState extends State<BottomExpandableAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    EdgeInsets viewPadding = widget.attachSide == Side.Bottom
-        ? EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom)
-        : EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
+    EdgeInsets viewPadding = widget.attachSide == Side.Bottom ? EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom) : EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
 
     return LayoutBuilder(
       builder: (context, layoutConstraints) {
@@ -158,7 +156,7 @@ class _BottomExpandableAppBarState extends State<BottomExpandableAppBar> {
                     height: panelState * finalHeight + widget.appBarHeight + widget.bottomOffset + viewPadding.vertical,
                     decoration: widget.expandedDecoration ??
                         BoxDecoration(
-                          color: widget.expandedBackColor ?? Theme.of(context).backgroundColor,
+                          color: widget.expandedBackColor ?? Theme.of(context).colorScheme.background,
                           borderRadius: BorderRadius.circular(25),
                         ),
                     child: Opacity(opacity: panelState > 0.25 ? 1 : panelState * 4, child: widget.expandedBody),
@@ -168,7 +166,7 @@ class _BottomExpandableAppBarState extends State<BottomExpandableAppBar> {
             ),
             ClipPath(
               child: Container(
-                color: widget.bottomAppBarColor ?? Theme.of(context).bottomAppBarColor,
+                color: widget.bottomAppBarColor ?? Theme.of(context).bottomAppBarTheme.color,
                 height: widget.appBarHeight + viewPadding.vertical,
                 child: Padding(
                   padding: viewPadding,
